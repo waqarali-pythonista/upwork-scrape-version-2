@@ -4,5 +4,5 @@ Flask-Cors==3.0.10
 selenium==4.9.1
 SQLAlchemy==2.0.19
 python-dotenv
-Gunicorn
+gunicorn==23.0.0
 pywin32; platform_system == "Windows"
