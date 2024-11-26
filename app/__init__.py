@@ -22,9 +22,9 @@ def create_app():
     db.init_app(app)
     CORS(app)
 
-    # # Register blueprints
-    # from app.routes.job_routes import job_bp
-    # app.register_blueprint(job_bp, url_prefix='/api')
+    # Register blueprints
+    from app.routes.job_routes import job_bp
+    app.register_blueprint(job_bp, url_prefix='/api')
 
     # Ensure database tables are created
     with app.app_context():
