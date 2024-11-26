@@ -19,3 +19,7 @@ class Config:
     # Flask settings
     #DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 't')
     #SECRET_KEY = os.getenv('SECRET_KEY', 'default-secret-key')
+    # ChromeDriver configuration
+    CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH', '/path/to/chromedriver')  # default path if not set in .env
+    GOOGLE_CHROME_BIN = os.getenv('GOOGLE_CHROME_BIN', '/path/to/google-chrome')  # default path if not set in .env
+3. 
