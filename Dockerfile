@@ -12,6 +12,8 @@ COPY . /app
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Ensure Python is available (install if needed)
+RUN apt-get update && apt-get install -y python3 python3-pip
 # Expose the port that Heroku will dynamically assign
 EXPOSE 5000
 
