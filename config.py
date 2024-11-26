@@ -22,4 +22,4 @@ class Config:
     # ChromeDriver configuration
     CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH', '/path/to/chromedriver')  # default path if not set in .env
     GOOGLE_CHROME_BIN = os.getenv('GOOGLE_CHROME_BIN', '/path/to/google-chrome')  # default path if not set in .env
-3. 
+
