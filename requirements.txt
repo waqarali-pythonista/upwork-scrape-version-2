@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy==3.0.3
+Flask-Cors==3.0.10
+selenium==4.9.1
+SQLAlchemy==2.0.19
+python-dotenv
+Gunicorn
+pywin32; platform_system == "Windows"
