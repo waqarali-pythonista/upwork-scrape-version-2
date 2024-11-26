@@ -193,6 +193,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
 class ScrapingService:
     """
@@ -200,29 +201,35 @@ class ScrapingService:
     """
 
     @staticmethod
-    def scrape_job_details(url):
+    def scrape_job_details(url, proxy=None):
         """
         Scrapes job details from a given URL.
-        
+
         Args:
             url (str): The URL of the job post to scrape.
+            proxy (str, optional): Proxy server address (e.g., 'http://proxy-server:port').
 
-        Returns:    
+        Returns:
             dict: A dictionary containing the scraped job details.
         """
         # Set up Chrome options for headless mode
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")  # Path to Chrome binary
-        chrome_options.add_argument("--headless")  # Run in headless mode
-        chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
-        chrome_options.add_argument("--no-sandbox")  # Required for running in restricted environments
-        chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration in headless mode (optional)
+        options = Options()
+        options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')  # Path to Chrome binary
+        options.add_argument('--headless')  # Run in headless mode
+        options.add_argument('--disable-gpu')  # Disable GPU acceleration in headless mode
+        options.add_argument('--no-sandbox')  # Required for restricted environments
+        options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+        options.add_argument('--remote-debugging-port=9222')  # Enable remote debugging
+
+        # Add proxy configuration if provided
+        if proxy:
+            options.add_argument(f'--proxy-server={proxy}')
 
         # Initialize WebDriver with the configured options
         try:
             driver = webdriver.Chrome(
-                executable_path=os.environ.get("CHROMEDRIVER_PATH"),  # Path to Chromedriver
-                options=chrome_options
+                executable_path=os.environ.get('CHROMEDRIVER_PATH'),  # Path to Chromedriver
+                options=options
             )
         except Exception as e:
             raise RuntimeError(f"Error initializing the WebDriver: {e}")
@@ -288,3 +295,4 @@ class ScrapingService:
 
         finally:
             driver.quit()
+
