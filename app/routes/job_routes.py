@@ -3,6 +3,7 @@ from app.models.job_model import Job
 from app import db
 from app.services.scraping_service import ScrapingService
 
+# use class and after register routes 
 # Define the Blueprint for job-related routes
 job_bp = Blueprint('job', __name__)
 
